@@ -15,4 +15,3 @@ class AuthPage(BasePage):
 
         create_an_account_button = self.driver.find_element(By.ID, 'SubmitCreate')
         create_an_account_button.click()
-        

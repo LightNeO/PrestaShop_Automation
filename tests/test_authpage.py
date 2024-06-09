@@ -5,6 +5,7 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.ui import WebDriverWait
 
 
+@pytest.mark.authpage
 def test_correct_email_registration(browser):
     auth_page = AuthPage(browser)
     auth_page.open_authpage()
@@ -14,6 +15,7 @@ def test_correct_email_registration(browser):
 
     assert email_field is not None
 
+@pytest.mark.authpage
 def test_incorrect_email_registration(browser):
     auth_page = AuthPage(browser)
     auth_page.open_authpage()
