@@ -15,3 +15,13 @@ class AuthPage(BasePage):
 
         create_an_account_button = self.driver.find_element(By.ID, 'SubmitCreate')
         create_an_account_button.click()
+
+    def login(self, email, password):
+        email_field = self.driver.find_element(By.ID, 'email')
+        email_field.send_keys(email)
+
+        password_field = self.driver.find_element(By.ID, 'passwd')
+        password_field.send_keys(password)
+
+        signin_button = self.driver.find_element(By.ID, 'SubmitLogin')
+        signin_button.click()

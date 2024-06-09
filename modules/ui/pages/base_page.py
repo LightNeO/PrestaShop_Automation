@@ -10,6 +10,13 @@ class BasePage:
         self.driver.get(url)
 
     def get_element_by(self, ByDotType, value):
-        return WebDriverWait(self.driver, 2).until(expected_conditions.presence_of_element_located((ByDotType, value)))
+        return WebDriverWait(self.driver, 2).until(expected_conditions.element_to_be_clickable((ByDotType, value)))
+
+    def check_title(self, expected_title):
+        return self.driver.title == expected_title
+
+    def refresh_page(self):
+        self.driver.refresh()
+
 
 

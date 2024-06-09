@@ -21,9 +21,9 @@ class HomePage(BasePage):
         return phone_number
 
     def search_for_item(self, item_name):
-        search_field = self.driver.find_element(By.CLASS_NAME, 'search_query')
+        search_field = self.get_element_by(By.CLASS_NAME, 'search_query')
         search_field.send_keys(item_name)
 
-        search_button = self.driver.find_element(By.NAME, 'submit_search')
+        search_button = self.get_element_by(By.NAME, 'submit_search')
         search_button.click()
 
