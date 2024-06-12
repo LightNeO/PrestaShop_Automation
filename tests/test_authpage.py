@@ -14,17 +14,20 @@ def test_correct_email_registration(browser):
 
     assert email_field is not None
 
+
 @pytest.mark.authpage
 def test_incorrect_email_registration(browser):
     auth_page = AuthPage(browser)
     auth_page.open_authpage()
     test_email = 'test'
     auth_page.create_account(test_email)
-    error = auth_page.get_element_by(By.XPATH, '//*[@id="create_account_error"]/ol/li')
+    error_xpath = '//*[@id="create_account_error"]/ol/li'
+    error = auth_page.get_element_by(By.XPATH, error_xpath)
 
     actual_result = error.text
     expected_result = 'Invalid email address.'
     assert actual_result == expected_result
+
 
 @pytest.mark.authpage
 def test_login_with_correct_credentials(browser):
@@ -38,6 +41,7 @@ def test_login_with_correct_credentials(browser):
     assert auth_page.check_title(expected_title)
 
 
+#Complex test for verifying that item is added into the account wishlist
 @pytest.mark.authpage
 def test_add_item_into_wishlist(browser):
     auth_page = AuthPage(browser)
@@ -64,6 +68,7 @@ def test_add_item_into_wishlist(browser):
     #Product name on the site is using some strange spaces, thats why we are looking word by word
     assert all(word in actual_product_added for word in expected_product_name) and actual_product_amount == '1'
 
+
 @pytest.mark.authpage
 def test_delete_item_from_wishlist(browser):
     auth_page = AuthPage(browser)
@@ -73,5 +78,4 @@ def test_delete_item_from_wishlist(browser):
     actual_amount = auth_page.get_element_by(By.CSS_SELECTOR, '.bold.align_center').text
 
     assert actual_amount == '0'
-
 
